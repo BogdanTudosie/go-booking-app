@@ -1,11 +1,16 @@
 package models
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/google/uuid"
+)
 
 type Ticket struct {
-	Class   string
-	Cost    int
-	Steamer Steamer
+	TicketNumber string
+	Class        string
+	Cost         int
+	Steamer      Steamer
 }
 
 func (t *Ticket) BookTicket() {
@@ -14,4 +19,8 @@ func (t *Ticket) BookTicket() {
 		return
 	}
 	t.Steamer.TicketsLeft -= 1
+}
+
+func (t *Ticket) GenerateTicketNumber() {
+	t.TicketNumber = uuid.NewString()
 }
